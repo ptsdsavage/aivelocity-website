@@ -1,12 +1,21 @@
-# robots.txt for aivelocityfund.com
+# robots.txt for AI Velocity Fund
 User-agent: *
 Allow: /
 
 # Sitemap location
 Sitemap: https://aivelocityfund.com/sitemap.xml
 
-# Disallow admin or private paths (if any)
+# Disallow dev/test pages
 Disallow: /style-guide.html
 Disallow: /test1.html
 Disallow: /butterfly-test.html
 Disallow: /leaderboard-copy.html
+Disallow: /page_template.html
+Disallow: /strategy-design-preview.html
+
+# Disallow utility scripts and config
+Disallow: /*.py$
+Disallow: /server.py
+Disallow: /Dockerfile
+Disallow: /docker-compose.yml
+Disallow: /nginx.conf
