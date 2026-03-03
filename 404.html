@@ -82,6 +82,16 @@
 </head>
 
 <body class="body">
+  <script>
+    // Redirect extensionless URLs to .html equivalents on GitHub Pages
+    (function () {
+      var path = window.location.pathname;
+      // If path has no file extension and isn't just "/" or ending with "/"
+      if (path !== '/' && !path.endsWith('/') && path.indexOf('.') === -1) {
+        window.location.replace(path + '.html' + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCG69XDQ" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <div id="nav-placeholder"></div>
