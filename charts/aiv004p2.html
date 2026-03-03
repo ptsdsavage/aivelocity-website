@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WCG69XDQ');</script>
+  <meta charset="utf-8">
+  <title>AIV004 Paper 2 - Portfolio Performance | AI Velocity Fund</title>
+  <meta name="description" content="AIV004 Paper 2 portfolio performance vs SPY benchmark.">
+  <meta property="og:title" content="AIV004 Paper 2 - Portfolio Performance | AI Velocity Fund">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/design-system.css" rel="stylesheet" type="text/css">
+  <link href="/css/components.css" rel="stylesheet" type="text/css">
+  <link href="/css/layout.css" rel="stylesheet" type="text/css">
+  <link href="/css/ai-velocity.css" rel="stylesheet" type="text/css">
+  <link href="/images/favicon.jpeg" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.jpeg" rel="apple-touch-icon">
+
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+  <style>
+    .chart-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(27, 77, 62, 0.3);
+    }
+
+    .chart-hero-title {
+      color: #fff;
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.025em;
+    }
+
+    .chart-hero-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      font-family: var(--font-sans);
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    .chart-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .chart-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .chart-card-title-block {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .chart-card-title-block h2 {
+      color: #111827;
+      font-family: var(--font-serif);
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .chart-card-title-block p {
+      color: #6B7280;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .time-selector {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background: #f9fafb;
+      padding: 0.5rem;
+      border-radius: 10px;
+    }
+
+    .time-selector-label {
+      color: #6B7280;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    .time-btn {
+      padding: 0.625rem 1.25rem;
+      border: 2px solid transparent;
+      background: white;
+      color: #111827;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .time-btn:hover {
+      background: #f3f4f6;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .time-btn.active {
+      background: #1b4d3e;
+      color: white;
+      border-color: #1b4d3e;
+      box-shadow: 0 4px 6px rgba(27, 77, 62, 0.3);
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 550px;
+      margin-bottom: 2rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fafafa;
+    }
+
+    #tradingViewChart {
+      width: 100%;
+      height: 100%;
+    }
+
+    .chart-legend {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      padding: 2rem 0;
+      border-top: 2px solid #e5e7eb;
+    }
+
+    .chart-legend-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: #f9fafb;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .chart-legend-item:hover {
+      background: #f3f4f6;
+      transform: translateY(-2px);
+    }
+
+    .chart-legend-label {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      color: #6B7280;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+    }
+
+    .chart-legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .chart-legend-dot.strategy {
+      background: #1b4d3e;
+    }
+
+    .chart-legend-dot.benchmark {
+      background: #3b82f6;
+    }
+
+    .chart-legend-value {
+      color: #111827;
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .chart-legend-value.positive {
+      color: #1b4d3e;
+    }
+
+    .chart-legend-value.negative {
+      color: #ef4444;
+    }
+
+    .chart-hint {
+      text-align: center;
+      color: #6B7280;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: #f9fafb;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    @media(max-width:768px) {
+      .chart-hero {
+        padding: 2rem 1.5rem;
+      }
+
+      .chart-hero-title {
+        font-size: 1.875rem;
+      }
+
+      .chart-card {
+        padding: 1.5rem;
+      }
+
+      .chart-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chart-card-title-block h2 {
+        font-size: 1.5rem;
+      }
+
+      .time-selector {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .time-btn {
+        flex: 1;
+        min-width: calc(50% - 0.25rem);
+      }
+
+      .chart-wrapper {
+        height: 400px;
+      }
+
+      .chart-legend {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .chart-legend-item {
+        width: 100%;
+      }
+
+      .chart-legend-value {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+
+  <style id="theme-toggle-styles">
+    /* ── Theme Toggle Button ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .theme-icon-dark,
+    .theme-icon-light {
+      line-height: 1;
+    }
+
+    /* Default (dark mode): show moon, hide sun */
+    body:not(.light-mode) .theme-icon-light {
+      display: none;
+    }
+
+    body:not(.light-mode) .theme-icon-dark {
+      display: inline;
+    }
+
+    /* Light mode: show sun, hide moon */
+    body.light-mode .theme-icon-dark {
+      display: none;
+    }
+
+    body.light-mode .theme-icon-light {
+      display: inline;
+    }
+
+    /* ── Light Mode Overrides ── */
+    body.light-mode {
+      background-color: #040911 !important;
+      color: #040911 !important;
+    }
+
+    body.light-mode .navbar {
+      background-color: rgba(4, 9, 17, 0.96) !important;
+      border-bottom: 1px solid rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .navbar-signal-line {
+      background-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .nav-brand-name {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-fund {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .nav-link,
+    body.light-mode .nav-dropdown-toggle {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-link:hover,
+    body.light-mode .nav-dropdown-toggle:hover {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-dropdown-menu {
+      background-color: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .nav-dropdown-link {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-dropdown-link:hover {
+      background-color: rgba(42, 92, 179, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-toggle-line {
+      background-color: #ffffff !important;
+    }
+
+    body.light-mode .theme-toggle {
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Footer */
+    body.light-mode .footer {
+      background-color: #0D1525 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .footer-tagline,
+    body.light-mode .footer-link,
+    body.light-mode .footer-copyright {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .footer-heading {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-name.footer-brand-name {
+      color: #ffffff !important;
+    }
+
+    /* ── White Cards on Navy Background ── */
+    /* Report stat cards */
+    body.light-mode .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stat-card h3 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card p {
+      color: #040911 !important;
+    }
+
+    body.light-mode .stat-card.positive p {
+      color: #059669 !important;
+    }
+
+    body.light-mode .stat-card.negative p {
+      color: #dc2626 !important;
+    }
+
+    /* Report table card */
+    body.light-mode .report-table-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .report-table-header h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode td {
+      color: #374151 !important;
+    }
+
+    body.light-mode td:first-child {
+      color: #040911 !important;
+    }
+
+    body.light-mode tbody tr:hover td {
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .report-footer-note {
+      color: #6B7280 !important;
+      border-top-color: #e5e7eb !important;
+    }
+
+    /* Report hero */
+    body.light-mode .report-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    /* Chart pages */
+    body.light-mode .chart-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-title {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-subtitle {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .chart-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .chart-card-title-block h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-card-title-block p {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .time-selector {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn {
+      background: #ffffff !important;
+      color: #374151 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn.active {
+      background: #2A5CB3 !important;
+      color: #ffffff !important;
+      border-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .chart-wrapper {
+      border-color: #D1D9E6 !important;
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .chart-legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .chart-legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-legend-value.positive {
+      color: #059669 !important;
+    }
+
+    body.light-mode .chart-legend-value.negative {
+      color: #dc2626 !important;
+    }
+
+    body.light-mode .chart-hint {
+      background: #f3f4f6 !important;
+      color: #6B7280 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    /* Strategies page */
+    body.light-mode .page-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .page-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .page-hero p {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .strategy-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .strategy-card h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .strategy-card p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .strategy-card-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .comparison-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .comparison-section h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .comparison-section .subtitle {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .page-footer-note {
+      color: #6B7280 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .strategy-link-secondary {
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.4) !important;
+    }
+
+    /* Index / home page */
+    body.light-mode .hero-section {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .section-card,
+    body.light-mode .feature-card,
+    body.light-mode .metric-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .section-card h2,
+    body.light-mode .section-card h3,
+    body.light-mode .feature-card h3,
+    body.light-mode .metric-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .section-card p,
+    body.light-mode .feature-card p,
+    body.light-mode .metric-card p {
+      color: #374151 !important;
+    }
+
+    /* About page */
+    body.light-mode .about-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .about-card,
+    body.light-mode .team-card,
+    body.light-mode .value-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .about-card h2,
+    body.light-mode .about-card h3,
+    body.light-mode .team-card h3,
+    body.light-mode .value-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .about-card p,
+    body.light-mode .team-card p,
+    body.light-mode .value-card p {
+      color: #374151 !important;
+    }
+
+    /* ── Backtest pages ── */
+    body.light-mode .backtest-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .backtest-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .backtest-hero p {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    body.light-mode .backtest-container {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .backtest-section h2,
+    body.light-mode .backtest-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section th {
+      background: #f3f4f6 !important;
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    /* Stat cards in backtests - White with Cobalt metrics */
+    body.light-mode .stats-hero .stat-card,
+    body.light-mode .stats-grid .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .label,
+    body.light-mode .stats-grid .stat-card .label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .value,
+    body.light-mode .stats-grid .stat-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .subtext,
+    body.light-mode .stats-grid .stat-card .subtext {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card.highlight {
+      background: linear-gradient(135deg, #059669, #10b981) !important;
+      border: none !important;
+    }
+
+    body.light-mode .stat-card.highlight .label,
+    body.light-mode .stat-card.highlight .value,
+    body.light-mode .stat-card.highlight .subtext {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .config-box,
+    body.light-mode .risk-card {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .config-item .label,
+    body.light-mode .risk-card h4 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .config-item .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .risk-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .progress-bar {
+      background: #e5e7eb !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .progress-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .alert-success {
+      background: rgba(16, 185, 129, 0.08) !important;
+    }
+
+    body.light-mode .alert-warning {
+      background: rgba(245, 158, 11, 0.08) !important;
+    }
+
+    body.light-mode .alert-content h4 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .alert-content p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .recommendation-box {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .recommendation-box h3 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .recommendation-box .big-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .recommendation-box .subtitle-text {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .comparison-table th {
+      background: #1b4d3e !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .comparison-table td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .comparison-table tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    body.light-mode .highlight-box {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-box h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .highlight-param {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-param-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .highlight-param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .params-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .params-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .param-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .param-name {
+      color: #374151 !important;
+    }
+
+    body.light-mode .param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .backtest-footer {
+      color: #A0ABBE !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .badge {
+      background: rgba(42, 92, 179, 0.15) !important;
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-container {
+      background: #f3f4f6 !important;
+    }
+
+    /* Mobile nav in light mode */
+    @media (max-width: 768px) {
+      body.light-mode .nav-menu {
+        background-color: #0D1525 !important;
+        border-left-color: rgba(42, 92, 179, 0.3) !important;
+      }
+
+      body.light-mode .nav-link {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-toggle {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-menu {
+        background-color: #040911 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCG69XDQ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-signal-line" aria-hidden="true"></div>
+    <div class="nav-container">
+      <a href="/" class="nav-brand-lockup">
+        <span class="nav-brand-name">AI VELOCITY</span>
+        <span class="nav-brand-fund">FUND</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Charts</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/charts/d1l1s1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/charts/d2l1s1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/charts/n1l1s1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Strategies</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/reports/d1l1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/reports/d2l1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/reports/n1l1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Backtests</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/backtests/iron-butterfly-backtest" class="nav-dropdown-link">Iron Butterfly</a>
+            <a href="/backtests/mean-reversion-strategy" class="nav-dropdown-link">Mean Reversion</a>
+            <a href="/backtests/trade-on-daily-earnings-calls---short-only" class="nav-dropdown-link">Earnings Short</a>
+            <a href="/backtests/trade-on-earnings-calls---long-only" class="nav-dropdown-link">Earnings Long</a>
+          </div>
+        </div>
+        <a href="/about-us" class="nav-link">About</a>
+        <a href="mailto:info@aivelocityfund.com" class="nav-link">Contact</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"
+          title="Toggle light/dark mode">
+          <span class="theme-toggle-icon theme-icon-dark">🌙</span>
+          <span class="theme-toggle-icon theme-icon-light">☀️</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width:1400px;margin:0 auto;padding:2rem 1.5rem;">
+
+    <script>
+      var strategyDisplayName = 'AIV004 Paper 2';
+      var csvFilePath = 'https://www.machinetrader.io/csvfiles/alpaca_portfolio_history_Aiv004P2.csv';
+      var spyFilePath = 'https://www.machinetrader.io/csvfiles/spydata.csv';
+      var accountStartDate = '2026-01-01';
+    </script>
+
+    <div class="chart-hero">
+      <h1 class="chart-hero-title">AIV004 Paper 2 Portfolio Performance</h1>
+      <p class="chart-hero-subtitle">Portfolio History and Performance Metrics</p>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div class="chart-card-title-block">
+          <h2>Portfolio vs SPY Benchmark</h2>
+          <p>Cumulative returns compared to S&amp;P 500 ETF</p>
+        </div>
+        <div class="time-selector">
+          <span class="time-selector-label">Time Period:</span>
+          <button class="time-btn" onclick="setComparisonPeriod('1D',this)">1 Day</button>
+          <button class="time-btn" onclick="setComparisonPeriod('1W',this)">1 Week</button>
+          <button class="time-btn" onclick="setComparisonPeriod('1M',this)">1 Month</button>
+          <button class="time-btn active" onclick="setComparisonPeriod('ALL',this)">All</button>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <div id="tradingViewChart"></div>
+      </div>
+      <div class="chart-legend">
+        <div class="chart-legend-item">
+          <div class="chart-legend-label">
+            <span class="chart-legend-dot strategy"></span>
+            Portfolio Return
+          </div>
+          <div class="chart-legend-value" id="strategyValue">--</div>
+        </div>
+        <div class="chart-legend-item">
+          <div class="chart-legend-label">
+            <span class="chart-legend-dot benchmark"></span>
+            SPY (Benchmark)
+          </div>
+          <div class="chart-legend-value" id="benchmarkValue">--</div>
+        </div>
+      </div>
+      <div class="chart-hint">Scroll to zoom &middot; Drag to pan &middot; Double-click to reset</div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="footer-brand-lockup"><span class="nav-brand-name">AI VELOCITY</span><span
+              class="nav-brand-fund">FUND</span></a>
+          <p class="footer-tagline">Systematic alpha generation through algorithmic execution.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-heading">Company</h4>
+            <a href="/about-us" class="footer-link">About</a>
+            <a href="mailto:info@aivelocityfund.com" class="footer-link">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-heading">Resources</h4>
+            <a href="/reports/d1l1" class="footer-link">Strategy</a>
+            <a href="/charts/d1l1s1" class="footer-link">Charts</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025&ndash;2026 AI Velocity Fund, LLC. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var COLORS = { benchmark: '#3b82f6', strategy: '#1b4d3e' };
+      var comparisonData = null, currentPeriod = 'ALL', chart = null, strategySeries = null, benchmarkSeries = null;
+
+      async function loadData() {
+        try {
+          if (typeof LightweightCharts === 'undefined') {
+            await new Promise(function (res) {
+              var t = setInterval(function () { if (typeof LightweightCharts !== 'undefined') { clearInterval(t); res(); } }, 100);
+            });
+          }
+          var r = await Promise.all([fetch(csvFilePath), fetch(spyFilePath)]);
+          if (!r[0].ok) throw new Error('Portfolio CSV: ' + r[0].status);
+          if (!r[1].ok) throw new Error('SPY CSV: ' + r[1].status);
+          var texts = await Promise.all([r[0].text(), r[1].text()]);
+          var spyMap = parseSpyCSV(texts[1], accountStartDate);
+          var raw = parsePortfolioCSV(texts[0], spyMap);
+          raw.sort(function (a, b) { return a.time - b.time; });
+          var seen = new Set(), unique = [];
+          for (var i = raw.length - 1; i >= 0; i--) { if (!seen.has(raw[i].time)) { seen.add(raw[i].time); unique.unshift(raw[i]); } }
+          comparisonData = unique;
+          if (unique.length > 0) initChart();
+          else throw new Error('No data points found');
+        } catch (e) {
+          var el = document.getElementById('tradingViewChart');
+          if (el) el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#ef4444;font-family:sans-serif;padding:2rem;">Error loading data: ' + e.message + '</div>';
+        }
+      }
+
+      function parseSpyCSV(text, startDate) {
+        var lines = text.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+        var h = lines[0].split(',').map(function (x) { return x.trim(); });
+        var di = h.indexOf('Date'), oi = h.indexOf('Open');
+        if (di < 0 || oi < 0) return {};
+        var prices = {}, startPrice = null;
+        for (var i = 1; i < lines.length; i++) {
+          var v = lines[i].trim().split(',').map(function (x) { return x.trim(); });
+          var d = v[di], p = parseFloat(v[oi]);
+          if (!isNaN(p) && d) { prices[d] = p; if (d >= startDate && startPrice === null) startPrice = p; }
+        }
+        if (startPrice === null) return {};
+        var out = {};
+        for (var k in prices) { if (k >= startDate) out[k] = (prices[k] - startPrice) / startPrice; }
+        return out;
+      }
+
+      function parsePortfolioCSV(text, spyMap) {
+        var lines = text.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+        var h = lines[0].split(',').map(function (x) { return x.trim().replace(/"/g, ''); });
+        var di = h.indexOf('Date'), ci = h.indexOf('Cumulative %');
+        if (di < 0 || ci < 0) throw new Error('Missing columns in portfolio CSV');
+        var out = [];
+        for (var i = 1; i < lines.length; i++) {
+          var v = lines[i].trim().split(',').map(function (x) { return x.trim(); });
+          if (v.length <= ci) continue;
+          var d = v[di], pct = parseFloat(v[ci]);
+          if (isNaN(pct) || !d) continue;
+          var ts;
+          if (d.indexOf('-') > 0 && d.split('-')[0].length === 4) { ts = Math.floor(new Date(d + 'T00:00:00').getTime() / 1000); }
+          else if (d.indexOf('/') > 0) { var p = d.split('/'); var yr = parseInt(p[2]); if (yr < 100) yr += 2000; ts = Math.floor(new Date(yr, parseInt(p[0]) - 1, parseInt(p[1])).getTime() / 1000); }
+          else { ts = Math.floor(new Date(d).getTime() / 1000); }
+          if (!isNaN(ts)) out.push({ time: ts, strategy: pct / 100, spy: spyMap[d] || 0 });
+        }
+        return out;
+      }
+
+      function getWeek(d) {
+        var u = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        var day = u.getUTCDay() || 7; u.setUTCDate(u.getUTCDate() + 4 - day);
+        var y = new Date(Date.UTC(u.getUTCFullYear(), 0, 1));
+        return Math.ceil((((u - y) / 86400000) + 1) / 7);
+      }
+
+      function filterData(data, period) {
+        if (!data || !data.length) return data;
+        if (period === 'ALL' || period === '1D') return data;
+        var out = [], curKey = null, last = null;
+        data.forEach(function (pt) {
+          var dt = new Date(pt.time * 1000);
+          var key = period === '1W' ? (dt.getFullYear() + 'W' + getWeek(dt)) : (dt.getFullYear() + '-' + dt.getMonth());
+          if (key !== curKey) { if (last) out.push(last); curKey = key; last = pt; } else { last = pt; }
+        });
+        if (last) out.push(last);
+        return out;
+      }
+
+      function setLegendValue(id, val) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = val.toFixed(2) + '%';
+        el.className = 'chart-legend-value' + (val > 0 ? ' positive' : val < 0 ? ' negative' : '');
+      }
+
+      function updateLegend(data) {
+        if (!data || !data.length) return;
+        var last = data[data.length - 1];
+        setLegendValue('strategyValue', last.strategy * 100);
+        setLegendValue('benchmarkValue', last.spy * 100);
+      }
+
+      function updateChart() {
+        if (!comparisonData || !strategySeries || !benchmarkSeries) return;
+        var filtered = filterData(comparisonData, currentPeriod);
+        strategySeries.setData(filtered.map(function (d) { return { time: d.time, value: d.strategy * 100 }; }));
+        benchmarkSeries.setData(filtered.map(function (d) { return { time: d.time, value: d.spy * 100 }; }));
+        chart.timeScale().fitContent();
+        updateLegend(filtered);
+      }
+
+      function initChart() {
+        var container = document.getElementById('tradingViewChart');
+        if (!container) return;
+        if (chart) chart.remove();
+        chart = LightweightCharts.createChart(container, {
+          width: container.clientWidth, height: container.clientHeight,
+          layout: { background: { color: '#ffffff' }, textColor: '#6B7280', fontSize: 12, fontFamily: 'IBM Plex Sans, sans-serif' },
+          grid: { vertLines: { color: 'rgba(0,0,0,0.05)' }, horzLines: { color: 'rgba(0,0,0,0.05)' } },
+          crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+          rightPriceScale: { borderColor: 'rgba(0,0,0,0.1)', scaleMargins: { top: 0.1, bottom: 0.1 } },
+          timeScale: { borderColor: 'rgba(0,0,0,0.1)', timeVisible: true, secondsVisible: false },
+          handleScroll: { mouseWheel: true, pressedMouseMove: true, horzTouchDrag: true, vertTouchDrag: true },
+          handleScale: { mouseWheel: true, pinch: true, axisPressedMouseMove: true }
+        });
+        strategySeries = chart.addLineSeries({ color: COLORS.strategy, lineWidth: 2, priceFormat: { type: 'custom', formatter: function (p) { return p.toFixed(2) + '%'; } } });
+        benchmarkSeries = chart.addLineSeries({ color: COLORS.benchmark, lineWidth: 2, priceFormat: { type: 'custom', formatter: function (p) { return p.toFixed(2) + '%'; } } });
+        chart.subscribeCrosshairMove(function (param) {
+          if (param.time) {
+            var sd = param.seriesData.get(strategySeries), bd = param.seriesData.get(benchmarkSeries);
+            if (sd && bd) { setLegendValue('strategyValue', sd.value); setLegendValue('benchmarkValue', bd.value); }
+          } else { updateLegend(filterData(comparisonData, currentPeriod)); }
+        });
+        window.addEventListener('resize', function () { if (chart && container) chart.applyOptions({ width: container.clientWidth, height: container.clientHeight }); });
+        updateChart();
+      }
+
+      window.setComparisonPeriod = function (period, btn) {
+        currentPeriod = period;
+        document.querySelectorAll('.time-btn').forEach(function (b) { b.classList.remove('active'); });
+        if (btn) btn.classList.add('active');
+        updateChart();
+      };
+
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadData); }
+      else { loadData(); }
+    })();
+  </script>
+
+
+  <script id="theme-toggle-script">
+    (function () {
+      var STORAGE_KEY = 'aiv-theme';
+      var btn = document.getElementById('themeToggle');
+      // Apply saved preference immediately
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light') document.body.classList.add('light-mode');
+
+      function toggle() {
+        var isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+      }
+      if (btn) {
+        btn.addEventListener('click', toggle);
+      } else {
+        // If btn not yet in DOM (e.g. nav loaded async), wait
+        document.addEventListener('DOMContentLoaded', function () {
+          var b = document.getElementById('themeToggle');
+          if (b) b.addEventListener('click', toggle);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

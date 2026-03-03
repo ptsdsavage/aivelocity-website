@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html data-wf-page="697e030639ae0a8bc7e2214f" data-wf-site="68d403d02e5fb4c85b1c05b8">
+
+<head>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WCG69XDQ');</script>
+  <meta charset="utf-8">
+  <title>Iron Butterfly Backtest | AI Velocity</title>
+  <meta content="Iron Butterfly Strategy - Performance Summary & Analysis" name="description">
+  <meta content="Iron Butterfly Backtest | AI Velocity" property="og:title">
+  <meta content="Iron Butterfly Strategy - Performance Summary & Analysis" property="og:description">
+  <meta content="Iron Butterfly Backtest | AI Velocity" property="twitter:title">
+  <meta content="Iron Butterfly Strategy - Performance Summary & Analysis" property="twitter:description">
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/design-system.css" rel="stylesheet" type="text/css">
+  <link href="/css/layout.css" rel="stylesheet" type="text/css">
+  <link href="/css/components.css" rel="stylesheet" type="text/css">
+  <link href="/css/ai-velocity.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script
+    type="text/javascript">WebFont.load({ google: { families: ["IBM Plex Mono:300,400,500,600,700", "IBM Plex Serif:300,400,500,600,700", "Inter:300,400,500,600,700"] } });</script>
+  <script
+    type="text/javascript">!function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);</script>
+  <link href="/images/favicon.jpeg" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.jpeg" rel="apple-touch-icon">
+  <style>
+    :root {
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg-card: #0D1525;
+      --bg-code: #0a1628;
+      --text-primary: #ffffff;
+      --text-secondary: #A0ABBE;
+      --border: rgba(42, 92, 179, 0.2);
+    }
+
+    .backtest-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 24px;
+    }
+
+    /* Hero Header */
+    .backtest-hero {
+      background: linear-gradient(135deg, var(--primary-green, #1b4d3e) 0%, #0b1d3a 100%);
+      padding: 2.5rem;
+      text-align: center;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 40px rgba(27, 77, 62, 0.3);
+    }
+
+    .backtest-hero h1 {
+      font-family: 'IBM Plex Serif', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .backtest-hero p {
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .subtitle {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Stats Grid */
+    .stats-hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 2px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-card.highlight {
+      background: linear-gradient(135deg, var(--success-dark), var(--success));
+      border: none;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .stat-card.highlight .label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .stat-card.highlight .value {
+      color: white;
+    }
+
+    .stat-card .subtext {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .stat-card.highlight .subtext {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Sections */
+    .backtest-section {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .backtest-section h2 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'IBM Plex Serif', serif;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .backtest-section h3 {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      margin: 1.5rem 0 1rem;
+      font-family: 'IBM Plex Serif', serif;
+      font-weight: 500;
+    }
+
+    /* Two Column Layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Tables */
+    .backtest-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .backtest-section th,
+    .backtest-section td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .backtest-section th {
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      background: var(--bg-code);
+    }
+
+    .backtest-section td {
+      color: var(--text-primary);
+    }
+
+    .backtest-section tr:hover td {
+      background: rgba(27, 77, 62, 0.05);
+    }
+
+    .positive {
+      color: var(--success) !important;
+      font-weight: 600;
+    }
+
+    .negative {
+      color: var(--danger) !important;
+      font-weight: 600;
+    }
+
+    /* Progress Bars */
+    .progress-container {
+      margin: 1rem 0;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+    }
+
+    .progress-bar {
+      height: 24px;
+      background: var(--bg-code);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 12px;
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .progress-fill.win {
+      background: linear-gradient(90deg, var(--success-dark), var(--success));
+    }
+
+    .progress-fill.loss {
+      background: linear-gradient(90deg, var(--danger), #dc2626);
+    }
+
+    /* Risk Grid */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .risk-card {
+      background: var(--bg-code);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .risk-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    .risk-card .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--text-primary);
+    }
+
+    /* Config Box */
+    .config-box {
+      background: var(--bg-code);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+    }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .config-item {
+      text-align: center;
+    }
+
+    .config-item .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .config-item .value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #c50;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      background: var(--bg-code);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      background: #1b4d3e;
+      color: white;
+      padding: 1rem;
+    }
+
+    .comparison-table td {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--success);
+    }
+
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid var(--warning);
+    }
+
+    .alert-icon {
+      font-size: 1.5rem;
+    }
+
+    .alert-content h4 {
+      margin-bottom: 0.25rem;
+      color: var(--text-primary);
+      font-family: 'IBM Plex Serif', serif;
+      font-weight: 600;
+    }
+
+    .alert-content p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Recommendation Box */
+    .recommendation-box {
+      background: linear-gradient(135deg, rgba(27, 77, 62, 0.1), rgba(11, 29, 58, 0.1));
+      border: 2px solid #1b4d3e;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .recommendation-box h3 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-family: 'IBM Plex Serif', serif;
+      color: var(--text-primary);
+    }
+
+    .recommendation-box .big-value {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1b4d3e;
+      margin: 0.5rem 0;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .recommendation-box .subtitle-text {
+      color: var(--text-secondary);
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Footer */
+    .backtest-footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .backtest-footer p {
+      margin: 0.5rem 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .backtest-section,
+    .stat-card {
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
+
+  <style id="theme-toggle-styles">
+    /* ── Theme Toggle Button ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .theme-icon-dark,
+    .theme-icon-light {
+      line-height: 1;
+    }
+
+    /* Default (dark mode): show moon, hide sun */
+    body:not(.light-mode) .theme-icon-light {
+      display: none;
+    }
+
+    body:not(.light-mode) .theme-icon-dark {
+      display: inline;
+    }
+
+    /* Light mode: show sun, hide moon */
+    body.light-mode .theme-icon-dark {
+      display: none;
+    }
+
+    body.light-mode .theme-icon-light {
+      display: inline;
+    }
+
+    /* ── Light Mode Overrides ── */
+    body.light-mode {
+      background-color: #040911 !important;
+      color: #040911 !important;
+    }
+
+    body.light-mode .navbar {
+      background-color: rgba(4, 9, 17, 0.96) !important;
+      border-bottom: 1px solid rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .navbar-signal-line {
+      background-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .nav-brand-name {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-fund {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .nav-link,
+    body.light-mode .nav-dropdown-toggle {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-link:hover,
+    body.light-mode .nav-dropdown-toggle:hover {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-dropdown-menu {
+      background-color: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .nav-dropdown-link {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-dropdown-link:hover {
+      background-color: rgba(42, 92, 179, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-toggle-line {
+      background-color: #ffffff !important;
+    }
+
+    body.light-mode .theme-toggle {
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Footer */
+    body.light-mode .footer {
+      background-color: #0D1525 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .footer-tagline,
+    body.light-mode .footer-link,
+    body.light-mode .footer-copyright {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .footer-heading {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-name.footer-brand-name {
+      color: #ffffff !important;
+    }
+
+    /* ── White Cards on Navy Background ── */
+    /* Report stat cards */
+    body.light-mode .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stat-card h3 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card p {
+      color: #040911 !important;
+    }
+
+    body.light-mode .stat-card.positive p {
+      color: #059669 !important;
+    }
+
+    body.light-mode .stat-card.negative p {
+      color: #dc2626 !important;
+    }
+
+    /* Report table card */
+    body.light-mode .report-table-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .report-table-header h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode td {
+      color: #374151 !important;
+    }
+
+    body.light-mode td:first-child {
+      color: #040911 !important;
+    }
+
+    body.light-mode tbody tr:hover td {
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .report-footer-note {
+      color: #6B7280 !important;
+      border-top-color: #e5e7eb !important;
+    }
+
+    /* Report hero */
+    body.light-mode .report-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    /* Chart pages */
+    body.light-mode .chart-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-title {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-subtitle {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .chart-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .chart-card-title-block h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-card-title-block p {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .time-selector {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn {
+      background: #ffffff !important;
+      color: #374151 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn.active {
+      background: #2A5CB3 !important;
+      color: #ffffff !important;
+      border-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .chart-wrapper {
+      border-color: #D1D9E6 !important;
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .chart-legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .chart-legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-legend-value.positive {
+      color: #059669 !important;
+    }
+
+    body.light-mode .chart-legend-value.negative {
+      color: #dc2626 !important;
+    }
+
+    body.light-mode .chart-hint {
+      background: #f3f4f6 !important;
+      color: #6B7280 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    /* Strategies page */
+    body.light-mode .page-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .page-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .page-hero p {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .strategy-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .strategy-card h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .strategy-card p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .strategy-card-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .comparison-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .comparison-section h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .comparison-section .subtitle {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .page-footer-note {
+      color: #6B7280 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .strategy-link-secondary {
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.4) !important;
+    }
+
+    /* Index / home page */
+    body.light-mode .hero-section {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .section-card,
+    body.light-mode .feature-card,
+    body.light-mode .metric-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .section-card h2,
+    body.light-mode .section-card h3,
+    body.light-mode .feature-card h3,
+    body.light-mode .metric-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .section-card p,
+    body.light-mode .feature-card p,
+    body.light-mode .metric-card p {
+      color: #374151 !important;
+    }
+
+    /* About page */
+    body.light-mode .about-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .about-card,
+    body.light-mode .team-card,
+    body.light-mode .value-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .about-card h2,
+    body.light-mode .about-card h3,
+    body.light-mode .team-card h3,
+    body.light-mode .value-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .about-card p,
+    body.light-mode .team-card p,
+    body.light-mode .value-card p {
+      color: #374151 !important;
+    }
+
+    /* ── Backtest pages ── */
+    body.light-mode .backtest-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .backtest-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .backtest-hero p {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    body.light-mode .backtest-container {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .backtest-section h2,
+    body.light-mode .backtest-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section th {
+      background: #f3f4f6 !important;
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    /* Stat cards in backtests - White with Cobalt metrics */
+    body.light-mode .stats-hero .stat-card,
+    body.light-mode .stats-grid .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .label,
+    body.light-mode .stats-grid .stat-card .label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .value,
+    body.light-mode .stats-grid .stat-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .subtext,
+    body.light-mode .stats-grid .stat-card .subtext {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card.highlight {
+      background: linear-gradient(135deg, #059669, #10b981) !important;
+      border: none !important;
+    }
+
+    body.light-mode .stat-card.highlight .label,
+    body.light-mode .stat-card.highlight .value,
+    body.light-mode .stat-card.highlight .subtext {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .config-box,
+    body.light-mode .risk-card {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .config-item .label,
+    body.light-mode .risk-card h4 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .config-item .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .risk-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .progress-bar {
+      background: #e5e7eb !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .progress-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .alert-success {
+      background: rgba(16, 185, 129, 0.08) !important;
+    }
+
+    body.light-mode .alert-warning {
+      background: rgba(245, 158, 11, 0.08) !important;
+    }
+
+    body.light-mode .alert-content h4 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .alert-content p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .recommendation-box {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .recommendation-box h3 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .recommendation-box .big-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .recommendation-box .subtitle-text {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .comparison-table th {
+      background: #1b4d3e !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .comparison-table td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .comparison-table tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    body.light-mode .highlight-box {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-box h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .highlight-param {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-param-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .highlight-param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .params-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .params-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .param-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .param-name {
+      color: #374151 !important;
+    }
+
+    body.light-mode .param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .backtest-footer {
+      color: #A0ABBE !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .badge {
+      background: rgba(42, 92, 179, 0.15) !important;
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-container {
+      background: #f3f4f6 !important;
+    }
+
+    /* Mobile nav in light mode */
+    @media (max-width: 768px) {
+      body.light-mode .nav-menu {
+        background-color: #0D1525 !important;
+        border-left-color: rgba(42, 92, 179, 0.3) !important;
+      }
+
+      body.light-mode .nav-link {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-toggle {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-menu {
+        background-color: #040911 !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="body">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCG69XDQ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- Navigation placeholder - loaded dynamically -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-signal-line" aria-hidden="true"></div>
+    <div class="nav-container">
+      <a href="/" class="nav-brand-lockup">
+        <span class="nav-brand-name">AI VELOCITY</span>
+        <span class="nav-brand-fund">FUND</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Charts</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/charts/d1l1s1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/charts/d2l1s1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/charts/n1l1s1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Strategies</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/reports/d1l1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/reports/d2l1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/reports/n1l1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Backtests</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/backtests/iron-butterfly-backtest" class="nav-dropdown-link">Iron Butterfly</a>
+            <a href="/backtests/mean-reversion-strategy" class="nav-dropdown-link">Mean Reversion</a>
+            <a href="/backtests/trade-on-daily-earnings-calls---short-only" class="nav-dropdown-link">Earnings Short</a>
+            <a href="/backtests/trade-on-earnings-calls---long-only" class="nav-dropdown-link">Earnings Long</a>
+          </div>
+        </div>
+        <a href="/about-us" class="nav-link">About</a>
+        <a href="mailto:info@aivelocityfund.com" class="nav-link">Contact</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"
+          title="Toggle light/dark mode">
+          <span class="theme-toggle-icon theme-icon-dark">🌙</span>
+          <span class="theme-toggle-icon theme-icon-light">☀️</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="backtest-container">
+    <!-- Hero Header -->
+    <header class="backtest-hero">
+      <h1>🦋 Iron Butterfly Strategy</h1>
+      <p>Performance Summary & Analysis</p>
+      <div class="subtitle">
+        <span class="badge">SPY Options</span>
+        <span class="badge">Jan 2023 - Jan 2026</span>
+        <span class="badge">25 Contracts</span>
+      </div>
+    </header>
+
+    <!-- Hero Stats -->
+    <div class="stats-hero">
+      <div class="stat-card highlight">
+        <div class="label">Total P&L</div>
+        <div class="value">+$136,940</div>
+        <div class="subtext">3-Year Performance</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Win Rate</div>
+        <div class="value">59.0%</div>
+        <div class="subtext">85 wins / 59 losses</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Total Trades</div>
+        <div class="value">144</div>
+        <div class="subtext">Weekly entries</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avg P&L/Trade</div>
+        <div class="value">+$951</div>
+        <div class="subtext">Per trade average</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Profit Factor</div>
+        <div class="value">1.49</div>
+        <div class="subtext">Wins / Losses ratio</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Sharpe Ratio</div>
+        <div class="value">1.24</div>
+        <div class="subtext">Risk-adjusted return</div>
+      </div>
+    </div>
+
+    <!-- Strategy Configuration -->
+    <section class="backtest-section">
+      <h2>⚙️ Strategy Configuration</h2>
+      <div class="config-box">
+        <div class="config-grid">
+          <div class="config-item">
+            <div class="label">Underlying</div>
+            <div class="value">SPY</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Contracts</div>
+            <div class="value">25</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Wing Width</div>
+            <div class="value">$10</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Entry Day</div>
+            <div class="value">Monday</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Entry Time</div>
+            <div class="value">9:38 AM</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Exit Day</div>
+            <div class="value">Thursday</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Exit Time</div>
+            <div class="value">2:40 PM</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Expiry</div>
+            <div class="value">Friday</div>
+          </div>
+        </div>
+      </div>
+      <h3>Exit Thresholds</h3>
+      <table>
+        <tr>
+          <td>🎯 Profit Target</td>
+          <td><span class="positive">≥ 50% of max profit</span></td>
+          <td>Lock in gains early</td>
+        </tr>
+        <tr>
+          <td>🏆 Max Profit Exit</td>
+          <td><span class="positive">≥ 90% of max profit</span></td>
+          <td>Near full potential</td>
+        </tr>
+        <tr>
+          <td>🛑 Stop Loss</td>
+          <td><span class="negative">≤ -80% of max profit</span></td>
+          <td>Cut losses</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Win/Loss Analysis -->
+    <section class="backtest-section">
+      <h2>📊 Win/Loss Analysis</h2>
+      <div class="two-col">
+        <div>
+          <h3>Win Rate Breakdown</h3>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Winners (85)</span>
+              <span>59.0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill win" style="width: 59%">59%</div>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Losers (59)</span>
+              <span>41.0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill loss" style="width: 41%">41%</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Exit Reasons</h3>
+          <table>
+            <tr>
+              <td>📅 Scheduled (Thursday)</td>
+              <td>~60%</td>
+            </tr>
+            <tr>
+              <td>🎯 50% Profit Target</td>
+              <td>~25%</td>
+            </tr>
+            <tr>
+              <td>🏆 90% Max Profit</td>
+              <td>~3%</td>
+            </tr>
+            <tr>
+              <td>🛑 Stop Loss (-80%)</td>
+              <td>~7%</td>
+            </tr>
+            <tr>
+              <td>📆 Expiry (Fri close)</td>
+              <td>~5%</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- P&L Details -->
+    <section class="backtest-section">
+      <h2>💰 P&L Statistics</h2>
+      <div class="two-col">
+        <div>
+          <h3>Winning Trades</h3>
+          <table>
+            <tr>
+              <td>Average Win</td>
+              <td class="positive">+$4,875.11</td>
+            </tr>
+            <tr>
+              <td>Largest Win</td>
+              <td class="positive">+$17,974.63</td>
+            </tr>
+            <tr>
+              <td>Best Trade Date</td>
+              <td>Nov 17-20, 2025</td>
+            </tr>
+            <tr>
+              <td>Total Wins</td>
+              <td class="positive">+$414,384</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <h3>Losing Trades</h3>
+          <table>
+            <tr>
+              <td>Average Loss</td>
+              <td class="negative">-$4,702.44</td>
+            </tr>
+            <tr>
+              <td>Largest Loss</td>
+              <td class="negative">-$12,678.83</td>
+            </tr>
+            <tr>
+              <td>Worst Trade Date</td>
+              <td>Jul 22-25, 2024</td>
+            </tr>
+            <tr>
+              <td>Total Losses</td>
+              <td class="negative">-$277,444</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Risk Assessment -->
+    <section class="backtest-section">
+      <h2>⚠️ Risk Assessment</h2>
+      <div class="risk-grid">
+        <div class="risk-card">
+          <h4>Max Drawdown</h4>
+          <div class="value negative">$32,414</div>
+        </div>
+        <div class="risk-card">
+          <h4>Max Risk per Trade</h4>
+          <div class="value">~$10-13K</div>
+        </div>
+        <div class="risk-card">
+          <h4>Stop Loss Hits</h4>
+          <div class="value">9 trades</div>
+        </div>
+      </div>
+      <h3>For Your $513K Account</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+            <th>% of Capital</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Max Risk per Trade</td>
+            <td>~$12,000</td>
+            <td>2.3%</td>
+            <td class="positive">✓ Conservative</td>
+          </tr>
+          <tr>
+            <td>Max Drawdown</td>
+            <td>$32,414</td>
+            <td>6.3%</td>
+            <td class="positive">✓ Acceptable</td>
+          </tr>
+          <tr>
+            <td>Worst Single Loss</td>
+            <td>$12,679</td>
+            <td>2.5%</td>
+            <td class="positive">✓ Manageable</td>
+          </tr>
+          <tr>
+            <td>3-Year Return</td>
+            <td>$136,940</td>
+            <td>26.7%</td>
+            <td class="positive">✓ Strong</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Position Size Comparison -->
+    <section class="backtest-section">
+      <h2>📏 Position Size Comparison</h2>
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>20 Contracts</th>
+              <th>25 Contracts</th>
+              <th>Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Total P&L</td>
+              <td>$109,552</td>
+              <td class="positive">$136,940</td>
+              <td class="positive">+$27,388</td>
+            </tr>
+            <tr>
+              <td>Avg P&L/Trade</td>
+              <td>$761</td>
+              <td class="positive">$951</td>
+              <td class="positive">+$190</td>
+            </tr>
+            <tr>
+              <td>Max Drawdown</td>
+              <td>$25,931</td>
+              <td>$32,414</td>
+              <td>+$6,483</td>
+            </tr>
+            <tr>
+              <td>% of $513K at Risk</td>
+              <td>1.9%</td>
+              <td>2.3%</td>
+              <td>+0.4%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Data Quality -->
+    <section class="backtest-section">
+      <h2>📡 Backtest Data Quality</h2>
+      <div class="two-col">
+        <div>
+          <h3>Price Source Distribution</h3>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Real SIP Data</span>
+              <span>93 trades (64.6%)</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill win" style="width: 64.6%">64.6%</div>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Black-Scholes Fallback</span>
+              <span>51 trades (35.4%)</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 35.4%; background: var(--warning)">35.4%</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Fill Price Logic</h3>
+          <table>
+            <tr>
+              <td><span class="positive">BUY</span> (Long options)</td>
+              <td>Ask price</td>
+            </tr>
+            <tr>
+              <td><span class="negative">SELL</span> (Short options)</td>
+              <td>Bid price</td>
+            </tr>
+          </table>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 1rem;">
+            Using actual bid/ask spread provides realistic fill estimates vs. optimistic midpoint pricing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section class="backtest-section">
+      <h2>💡 Key Insights</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">✅</span>
+        <div class="alert-content">
+          <h4>Consistent Profitability</h4>
+          <p>59% win rate with 1.49 profit factor demonstrates edge over 144 trades across varying market conditions.
+          </p>
+        </div>
+      </div>
+      <div class="alert alert-success">
+        <span class="alert-icon">✅</span>
+        <div class="alert-content">
+          <h4>Good Risk-Adjusted Returns</h4>
+          <p>Sharpe ratio of 1.24 indicates favorable returns relative to volatility. Max drawdown of 6.3% is well
+            within tolerance.</p>
+        </div>
+      </div>
+      <div class="alert alert-success">
+        <span class="alert-icon">✅</span>
+        <div class="alert-content">
+          <h4>Live vs Backtest Validation</h4>
+          <p>Live trade (Jan 2026) returned +$2,775 vs backtest prediction of +$1,375 — live outperformed 2x.</p>
+        </div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-content">
+          <h4>Volatility Events</h4>
+          <p>Strategy suffered during high-vol periods (Aug 2024, Apr 2025). Stop losses limited damage but multiple
+            consecutive losses occurred.</p>
+        </div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-content">
+          <h4>Black-Scholes Fallback</h4>
+          <p>35% of backtest used theoretical pricing. Actual results may vary for older periods without SIP data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommendation -->
+    <section class="backtest-section">
+      <h2>📋 Recommendation</h2>
+      <div class="recommendation-box">
+        <h3>Recommended Position Size</h3>
+        <div class="big-value">25 Contracts</div>
+        <p class="subtitle-text">For $513,238 account</p>
+        <div class="config-grid" style="margin-top: 1.5rem;">
+          <div class="config-item">
+            <div class="label">Expected Annual P&L</div>
+            <div class="value" style="color: var(--success);">~$45,600</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Expected Annual Return</div>
+            <div class="value" style="color: var(--success);">~8.9%</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Risk per Trade</div>
+            <div class="value">~2.3%</div>
+          </div>
+          <div class="config-item">
+            <div class="label">Max Expected Drawdown</div>
+            <div class="value">~6.3%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="backtest-footer">
+      <p>Iron Butterfly Strategy Summary • Generated January 31, 2026</p>
+      <p style="font-size: 0.8rem;">
+        Past performance does not guarantee future results. Options trading involves significant risk.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Footer placeholder - loaded dynamically -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="footer-brand-lockup"><span class="nav-brand-name">AI VELOCITY</span><span
+              class="nav-brand-fund">FUND</span></a>
+          <p class="footer-tagline">Systematic alpha generation through algorithmic execution.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-heading">Company</h4>
+            <a href="/about-us" class="footer-link">About</a>
+            <a href="mailto:info@aivelocityfund.com" class="footer-link">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-heading">Resources</h4>
+            <a href="/reports/d1l1" class="footer-link">Strategy</a>
+            <a href="/charts/d1l1s1" class="footer-link">Charts</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025&ndash;2026 AI Velocity Fund, LLC. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=68d403d02e5fb4c85b1c05b8"
+    type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+  <script src="/js/site.js" type="text/javascript"></script>
+
+  <script id="theme-toggle-script">
+    (function () {
+      var STORAGE_KEY = 'aiv-theme';
+      var btn = document.getElementById('themeToggle');
+      // Apply saved preference immediately
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light') document.body.classList.add('light-mode');
+
+      function toggle() {
+        var isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+      }
+      if (btn) {
+        btn.addEventListener('click', toggle);
+      } else {
+        // If btn not yet in DOM (e.g. nav loaded async), wait
+        document.addEventListener('DOMContentLoaded', function () {
+          var b = document.getElementById('themeToggle');
+          if (b) b.addEventListener('click', toggle);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

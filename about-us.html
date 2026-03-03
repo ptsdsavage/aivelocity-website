@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WCG69XDQ');</script>
+  <meta charset="utf-8">
+  <title>About Us | AI Velocity Fund, LLC</title>
+  <meta name="description"
+    content="About our pioneering hedge fund which uses state-of-the-art technologies to achieve market neutral investment success.">
+  <meta property="og:title" content="About Us | AI Velocity Fund, LLC">
+  <meta property="og:description"
+    content="About our pioneering hedge fund which uses state-of-the-art technologies to achieve market neutral investment success.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Us | AI Velocity Fund, LLC">
+  <meta name="twitter:description"
+    content="About our pioneering hedge fund which uses state-of-the-art technologies to achieve market neutral investment success.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts: IBM Plex Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/design-system.css" rel="stylesheet" type="text/css">
+  <link href="/css/components.css" rel="stylesheet" type="text/css">
+  <link href="/css/layout.css" rel="stylesheet" type="text/css">
+  <link href="/css/ai-velocity.css" rel="stylesheet" type="text/css">
+
+  <!-- Favicon -->
+  <link href="/images/favicon.jpeg" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.jpeg" rel="apple-touch-icon">
+  <link href="https://www.aivelocityfund.org" rel="canonical">
+
+  <!-- Analytics -->
+
+
+  <style>
+    /* ============================================
+       ABOUT US — PAGE-SPECIFIC STYLES
+       ============================================ */
+
+    /* ── Page Hero ── */
+    .about-hero {
+      padding: var(--space-32) var(--space-6) var(--space-24);
+      background: radial-gradient(ellipse at 50% 40%, #0b1d3a 0%, #040911 65%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(42, 92, 179, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .about-hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-hero-eyebrow {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: var(--space-6);
+    }
+
+    .about-hero-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-6xl);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.025em;
+    }
+
+    .about-hero-title strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .about-hero-body {
+      font-family: var(--font-sans);
+      font-size: var(--text-lg);
+      line-height: 1.8;
+      color: var(--text-secondary);
+      max-width: 720px;
+    }
+
+    /* ── Divider Line ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 0;
+    }
+
+    /* ── Team Section ── */
+    .team-section {
+      padding: var(--space-24) var(--space-6);
+      background-color: var(--navy-deep);
+      position: relative;
+    }
+
+    .team-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--border-subtle), transparent);
+    }
+
+    .team-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .team-header {
+      margin-bottom: var(--space-16);
+    }
+
+    .team-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 400;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: var(--space-4);
+    }
+
+    .team-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.015em;
+      margin-bottom: 0;
+    }
+
+    /* ── Team Grid ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+
+    /* ── Team Card ── */
+    .team-card {
+      background: linear-gradient(135deg, var(--navy-base) 0%, var(--navy-light) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0.6;
+      transition: opacity var(--transition-base);
+    }
+
+    .team-card:hover {
+      border-color: rgba(42, 92, 179, 0.3);
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-2px);
+    }
+
+    .team-card:hover::before {
+      opacity: 1;
+    }
+
+    .team-card-role {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: var(--space-3);
+    }
+
+    .team-card-name {
+      font-family: var(--font-serif);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-5);
+      line-height: 1.2;
+    }
+
+    .team-card-bio {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+
+    .team-card-bio p {
+      margin-bottom: var(--space-3);
+    }
+
+    .team-card-bio p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Values / Pillars Section ── */
+    .pillars-section {
+      padding: var(--space-24) var(--space-6);
+      background-color: var(--navy-base);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pillars-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .pillars-header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+    }
+
+    .pillars-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 400;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: var(--space-4);
+    }
+
+    .pillars-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.015em;
+      margin-bottom: 0;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    .pillar-card {
+      padding: var(--space-8);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      background-color: var(--navy-deep);
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(42, 92, 179, 0.25);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pillar-number {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: var(--space-4);
+    }
+
+    .pillar-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-3);
+    }
+
+    .pillar-body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+
+    /* ── CTA Section ── */
+    .about-cta-section {
+      padding: var(--space-24) var(--space-6);
+      background-color: var(--navy-deep);
+      text-align: center;
+    }
+
+    .about-cta-container {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .about-cta-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 400;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: var(--space-6);
+    }
+
+    .about-cta-title {
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-6);
+      letter-spacing: -0.015em;
+    }
+
+    .about-cta-body {
+      font-family: var(--font-sans);
+      font-size: var(--text-lg);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-10);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1023px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .about-hero {
+        padding: var(--space-24) var(--space-4) var(--space-16);
+      }
+
+      .about-hero-title {
+        font-size: var(--text-4xl);
+      }
+
+      .team-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .team-card {
+        padding: var(--space-6);
+      }
+
+      .pillars-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-cta-section {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .about-cta-title {
+        font-size: var(--text-3xl);
+      }
+    }
+  </style>
+
+  <style id="theme-toggle-styles">
+    /* ── Theme Toggle Button ── */
+    .theme-toggle {
+      display: none !important;
+    }
+
+    /* ── Light Mode Overrides ── */
+    body.light-mode {
+      background-color: #040911 !important;
+      color: #040911 !important;
+    }
+
+    body.light-mode .navbar {
+      background-color: rgba(4, 9, 17, 0.96) !important;
+      border-bottom: 1px solid rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .navbar-signal-line {
+      background-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .nav-brand-name {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-fund {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .nav-link,
+    body.light-mode .nav-dropdown-toggle {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-link:hover,
+    body.light-mode .nav-dropdown-toggle:hover {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-dropdown-menu {
+      background-color: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .nav-dropdown-link {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-dropdown-link:hover {
+      background-color: rgba(42, 92, 179, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-toggle-line {
+      background-color: #ffffff !important;
+    }
+
+    body.light-mode .theme-toggle {
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Footer */
+    body.light-mode .footer {
+      background-color: #0D1525 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .footer-tagline,
+    body.light-mode .footer-link,
+    body.light-mode .footer-copyright {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .footer-heading {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-name.footer-brand-name {
+      color: #ffffff !important;
+    }
+
+    /* ── White Cards on Navy Background ── */
+    /* Report stat cards */
+    body.light-mode .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stat-card h3 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card p {
+      color: #040911 !important;
+    }
+
+    body.light-mode .stat-card.positive p {
+      color: #059669 !important;
+    }
+
+    body.light-mode .stat-card.negative p {
+      color: #dc2626 !important;
+    }
+
+    /* Report table card */
+    body.light-mode .report-table-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .report-table-header h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode td {
+      color: #374151 !important;
+    }
+
+    body.light-mode td:first-child {
+      color: #040911 !important;
+    }
+
+    body.light-mode tbody tr:hover td {
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .report-footer-note {
+      color: #6B7280 !important;
+      border-top-color: #e5e7eb !important;
+    }
+
+    /* Report hero */
+    body.light-mode .report-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    /* Chart pages */
+    body.light-mode .chart-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-title {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-subtitle {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .chart-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .chart-card-title-block h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-card-title-block p {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .time-selector {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn {
+      background: #ffffff !important;
+      color: #374151 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn.active {
+      background: #2A5CB3 !important;
+      color: #ffffff !important;
+      border-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .chart-wrapper {
+      border-color: #D1D9E6 !important;
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .chart-legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .chart-legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-legend-value.positive {
+      color: #059669 !important;
+    }
+
+    body.light-mode .chart-legend-value.negative {
+      color: #dc2626 !important;
+    }
+
+    body.light-mode .chart-hint {
+      background: #f3f4f6 !important;
+      color: #6B7280 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    /* Strategies page */
+    body.light-mode .page-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .page-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .page-hero p {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .strategy-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .strategy-card h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .strategy-card p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .strategy-card-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .comparison-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .comparison-section h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .comparison-section .subtitle {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .page-footer-note {
+      color: #6B7280 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .strategy-link-secondary {
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.4) !important;
+    }
+
+    /* Index / home page */
+    body.light-mode .hero-section {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .section-card,
+    body.light-mode .feature-card,
+    body.light-mode .metric-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .section-card h2,
+    body.light-mode .section-card h3,
+    body.light-mode .feature-card h3,
+    body.light-mode .metric-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .section-card p,
+    body.light-mode .feature-card p,
+    body.light-mode .metric-card p {
+      color: #374151 !important;
+    }
+
+    /* About page */
+    body.light-mode .about-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .about-card,
+    body.light-mode .team-card,
+    body.light-mode .value-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .about-card h2,
+    body.light-mode .about-card h3,
+    body.light-mode .team-card h3,
+    body.light-mode .value-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .about-card p,
+    body.light-mode .team-card p,
+    body.light-mode .value-card p {
+      color: #374151 !important;
+    }
+
+    /* ── Backtest pages ── */
+    body.light-mode .backtest-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .backtest-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .backtest-hero p {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    body.light-mode .backtest-container {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .backtest-section h2,
+    body.light-mode .backtest-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section th {
+      background: #f3f4f6 !important;
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    /* Stat cards in backtests - White with Cobalt metrics */
+    body.light-mode .stats-hero .stat-card,
+    body.light-mode .stats-grid .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .label,
+    body.light-mode .stats-grid .stat-card .label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .value,
+    body.light-mode .stats-grid .stat-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .subtext,
+    body.light-mode .stats-grid .stat-card .subtext {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card.highlight {
+      background: linear-gradient(135deg, #059669, #10b981) !important;
+      border: none !important;
+    }
+
+    body.light-mode .stat-card.highlight .label,
+    body.light-mode .stat-card.highlight .value,
+    body.light-mode .stat-card.highlight .subtext {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .config-box,
+    body.light-mode .risk-card {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .config-item .label,
+    body.light-mode .risk-card h4 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .config-item .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .risk-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .progress-bar {
+      background: #e5e7eb !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .progress-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .alert-success {
+      background: rgba(16, 185, 129, 0.08) !important;
+    }
+
+    body.light-mode .alert-warning {
+      background: rgba(245, 158, 11, 0.08) !important;
+    }
+
+    body.light-mode .alert-content h4 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .alert-content p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .recommendation-box {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .recommendation-box h3 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .recommendation-box .big-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .recommendation-box .subtitle-text {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .comparison-table th {
+      background: #1b4d3e !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .comparison-table td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .comparison-table tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    body.light-mode .highlight-box {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-box h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .highlight-param {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-param-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .highlight-param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .params-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .params-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .param-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .param-name {
+      color: #374151 !important;
+    }
+
+    body.light-mode .param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .backtest-footer {
+      color: #A0ABBE !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .badge {
+      background: rgba(42, 92, 179, 0.15) !important;
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-container {
+      background: #f3f4f6 !important;
+    }
+
+    /* Mobile nav in light mode */
+    @media (max-width: 768px) {
+      body.light-mode .nav-menu {
+        background-color: #0D1525 !important;
+        border-left-color: rgba(42, 92, 179, 0.3) !important;
+      }
+
+      body.light-mode .nav-link {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-toggle {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-menu {
+        background-color: #040911 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCG69XDQ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-signal-line" aria-hidden="true"></div>
+    <div class="nav-container">
+      <a href="/" class="nav-brand-lockup">
+        <span class="nav-brand-name">AI VELOCITY</span>
+        <span class="nav-brand-fund">FUND</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+
+      <div class="nav-menu">
+        <!-- Charts Dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Charts</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/charts/d1l1s1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/charts/d2l1s1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/charts/n1l1s1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+
+        <!-- Strategies Dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Strategies</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/reports/d1l1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/reports/d2l1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/reports/n1l1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+
+        <!-- Backtests Dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Backtests</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/backtests/iron-butterfly-backtest" class="nav-dropdown-link">Iron Butterfly</a>
+            <a href="/backtests/mean-reversion-strategy" class="nav-dropdown-link">Mean Reversion</a>
+            <a href="/backtests/trade-on-daily-earnings-calls---short-only" class="nav-dropdown-link">Earnings Short</a>
+            <a href="/backtests/trade-on-earnings-calls---long-only" class="nav-dropdown-link">Earnings Long</a>
+          </div>
+        </div>
+
+        <a href="/about-us" class="nav-link" aria-current="page">About</a>
+        <a href="mailto:info@aivelocityfund.com" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <section class="about-hero">
+    <div class="about-hero-container">
+      <span class="about-hero-eyebrow">About AI Velocity Fund</span>
+      <h1 class="about-hero-title">Pioneering <strong>Market-Neutral</strong><br>Intelligence.</h1>
+      <p class="about-hero-body">AI Velocity Fund is a pioneering, market-neutral hedge fund that redefines investment
+        through a commitment to consistent, low-volatility performance. We integrate state-of-the-art artificial
+        intelligence with financial expertise, utilizing cutting-edge quantitative trading strategies. Our experienced
+        team of portfolio managers are programmers who build, test, and execute proprietary algorithms designed to
+        deliver reliable, non-volatile gains regardless of overall market conditions.</p>
+      <p class="about-hero-body">The AI advantage allows us to process massive data streams in real-time, uncover hidden
+        opportunities, and adapt to shifting markets faster than ever. We emphasize smarter risk management, including
+        predicting volatility and optimizing portfolio allocation, ensuring every investment decision is informed by
+        both cutting-edge algorithms and seasoned market judgment.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PILLARS / CORE VALUES
+       ═══════════════════════════════════════ -->
+  <section class="pillars-section">
+    <div class="pillars-container">
+      <div class="pillars-header">
+        <span class="pillars-label">Our Approach</span>
+        <h2 class="pillars-title">Built on Three Pillars</h2>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <span class="pillar-number">01</span>
+          <h3 class="pillar-title">Algorithmic Precision</h3>
+          <p class="pillar-body">Every trade is driven by proprietary algorithms built, tested, and refined by our team
+            of programmer-portfolio managers. No guesswork — only systematic, data-driven execution.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-number">02</span>
+          <h3 class="pillar-title">Market Neutrality</h3>
+          <p class="pillar-body">Our strategies are designed to generate consistent returns regardless of broader market
+            direction. We maintain a market-neutral posture through disciplined hedging and portfolio construction.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-number">03</span>
+          <h3 class="pillar-title">Intelligent Risk Management</h3>
+          <p class="pillar-body">AI-driven risk assessment continuously monitors volatility, optimizes portfolio
+            allocation, and simulates thousands of scenarios to keep every position aligned with our performance
+            objectives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TEAM
+       ═══════════════════════════════════════ -->
+  <section class="team-section">
+    <div class="team-container">
+      <div class="team-header">
+        <span class="team-label">Leadership</span>
+        <h2 class="team-title">Meet the Team</h2>
+      </div>
+
+      <div class="team-grid">
+
+        <!-- Dan Savage -->
+        <div class="team-card">
+          <span class="team-card-role">Managing Partner</span>
+          <h3 class="team-card-name">Dan Savage</h3>
+          <div class="team-card-bio">
+            <p>Dan Savage serves as Managing Partner of AI Velocity Fund and Co-Chairman of MachineTrader.io Inc., the
+              technology platform supporting the fund's trading infrastructure. A lifelong entrepreneur, Dan previously
+              served as CEO of Predictive Technology Systems and co-founded Resolute Digital, a successful digital
+              marketing agency.</p>
+            <p>He was an early pioneer in applying automation and data-driven systems to online advertising, including
+              developing one of the first automated platforms for purchasing Google AdWords. Dan brings extensive
+              experience in scaling technology-driven businesses and aligning product innovation with long-term
+              strategy.</p>
+          </div>
+        </div>
+
+        <!-- Ben Sanders -->
+        <div class="team-card">
+          <span class="team-card-role">Partner &amp; Chief Technology Officer</span>
+          <h3 class="team-card-name">Ben Sanders</h3>
+          <div class="team-card-bio">
+            <p>Ben Sanders is Partner and Chief Technology Officer of AI Velocity Fund and Co-Chairman of
+              MachineTrader.io Inc., where he oversees the firm's technology platform and systems architecture. A
+              lifelong computer scientist, Ben began programming at the age of seven.</p>
+            <p>His background includes senior technical leadership roles in Big Five advertising agencies, development
+              of online banking systems for Chase on Wall Street, and co-founding Resolute Digital as Chief Technology
+              Officer. Ben leads the design and execution of the fund's trading infrastructure and algorithmic systems.
+            </p>
+          </div>
+        </div>
+
+        <!-- Jerzy Pawlowski -->
+        <div class="team-card">
+          <span class="team-card-role">Partner &amp; Chief Investment Officer</span>
+          <h3 class="team-card-name">Jerzy Pawlowski, Ph.D.</h3>
+          <div class="team-card-bio">
+            <p>Jerzy Pawlowski serves as Partner and Chief Investment Officer of AI Velocity Fund, bringing deep
+              expertise in portfolio management, quantitative finance, and risk modeling. His background spans credit
+              derivatives, emerging markets, and structured products including CDOs.</p>
+            <p>He holds a Ph.D. in Physics and teaches graduate-level courses in <em>R for Finance</em> and
+              <em>Algorithmic Portfolio Management</em> at New York University. Jerzy oversees investment strategy,
+              portfolio construction, and risk management across all fund strategies.
+            </p>
+          </div>
+        </div>
+
+        <!-- Jack Marhofer -->
+        <div class="team-card">
+          <span class="team-card-role">Chief Financial Officer</span>
+          <h3 class="team-card-name">John "Jack" Marhofer</h3>
+          <div class="team-card-bio">
+            <p>John Marhofer serves as Chief Financial Officer of AI Velocity Fund, providing financial leadership to
+              support the firm's growth and operational discipline. Previously, Jack was CFO of Resolute Digital and
+              played a key role in its successful exit.</p>
+            <p>He also served as CFO of Cleveland BioLabs, Inc., where he helped complete an IPO and raise over $100
+              million in funding. Jack brings extensive experience in financial strategy, capital markets, and corporate
+              governance.</p>
+          </div>
+        </div>
+
+        <!-- Caroline Yakar -->
+        <div class="team-card">
+          <span class="team-card-role">Marketing Director</span>
+          <h3 class="team-card-name">Caroline Yakar</h3>
+          <div class="team-card-bio">
+            <p>Caroline Yakar is the Marketing Director at AI Velocity Fund, overseeing marketing operations,
+              communications, and the firm's digital presence.</p>
+            <p>Caroline supported the launch and maintains platform growth of MachineTrader.io through client support,
+              marketing, web management, and analytics. Earlier in her career, Caroline was a Senior Underwriter at Sun
+              Life Financial, and later co-owned a tourism business in Turkey with her husband.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════ -->
+  <section class="about-cta-section">
+    <div class="about-cta-container">
+      <span class="about-cta-label">Get in Touch</span>
+      <h2 class="about-cta-title">Ready to Learn More?</h2>
+      <p class="about-cta-body">Explore our strategies, review our performance data, or reach out directly to discuss
+        how AI Velocity Fund approaches systematic alpha generation.</p>
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+        <a href="/reports/d1l1" class="btn btn-primary btn-cta">
+          <span class="btn-text">View Strategies</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+        <a href="mailto:info@aivelocityfund.com" class="btn btn-secondary">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="footer-brand-lockup"><span class="nav-brand-name">AI VELOCITY</span><span
+              class="nav-brand-fund">FUND</span></a>
+          <p class="footer-tagline">Systematic alpha generation through algorithmic execution.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-heading">Company</h4>
+            <a href="/about-us" class="footer-link">About</a>
+            <a href="mailto:info@aivelocityfund.com" class="footer-link">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-heading">Resources</h4>
+            <a href="/reports/d1l1" class="footer-link">Strategy</a>
+            <a href="/charts/d1l1s1" class="footer-link">Charts</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025–2026 AI Velocity Fund, LLC. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/site.js" type="text/javascript"></script>
+
+
+  <script id="theme-toggle-script">
+    (function () {
+      var STORAGE_KEY = 'aiv-theme';
+      var btn = document.getElementById('themeToggle');
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light') document.body.classList.add('light-mode');
+
+      function toggle() {
+        var isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+      }
+      if (btn) {
+        btn.addEventListener('click', toggle);
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          var b = document.getElementById('themeToggle');
+          if (b) b.addEventListener('click', toggle);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

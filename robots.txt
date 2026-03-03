@@ -1,0 +1,12 @@
+# robots.txt for aivelocityfund.com
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://aivelocityfund.com/sitemap.xml
+
+# Disallow admin or private paths (if any)
+Disallow: /style-guide.html
+Disallow: /test1.html
+Disallow: /butterfly-test.html
+Disallow: /leaderboard-copy.html

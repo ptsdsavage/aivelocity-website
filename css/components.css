@@ -1,0 +1,352 @@
+/**
+ * AI Velocity Fund — Component Styles
+ * Buttons, Cards, and Form Inputs
+ * Stealth Institutional · 2026
+ */
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Primary CTA Button — Burnt Orange (surgical use only) */
+.btn-primary {
+  background-color: var(--cta);
+  color: var(--text-primary);
+  box-shadow: 0 0 20px rgba(204, 85, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Button Momentum: text slides right + cobalt vector arrow appears */
+.btn-primary .btn-text {
+  display: inline-block;
+  transition: transform var(--transition-base);
+}
+
+.btn-primary .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: opacity var(--transition-base), width var(--transition-base);
+  color: #2A5CB3;
+  margin-left: 0;
+}
+
+.btn-primary:hover .btn-text {
+  transform: translateX(4px);
+}
+
+.btn-primary:hover .btn-arrow {
+  opacity: 1;
+  width: 18px;
+  margin-left: 6px;
+}
+
+.btn-primary:hover {
+  background-color: var(--cta-hover);
+  color: var(--text-primary);
+  box-shadow: 0 0 35px rgba(204, 85, 0, 0.5);
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  transform: scale(1);
+  box-shadow: 0 0 15px rgba(204, 85, 0, 0.2);
+}
+
+/* Large CTA Button */
+.btn-cta {
+  padding: var(--space-5) var(--space-10);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 20px rgba(204, 85, 0, 0.3);
+  transition: all var(--transition-base);
+}
+
+.btn-cta:hover {
+  box-shadow: 0 0 40px rgba(204, 85, 0, 0.5);
+  transform: scale(1.02);
+}
+
+/* Secondary Button — Cobalt Blue Outlined */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+/* Ghost Button — Minimal */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-ghost:hover {
+  background-color: var(--navy-light);
+  color: var(--text-primary);
+  border-color: var(--navy-lighter);
+}
+
+/* Dark Button — Navy Background */
+.btn-dark {
+  background-color: var(--navy-base);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-dark:hover {
+  background-color: var(--navy-light);
+  border-color: var(--accent);
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.btn-lg {
+  padding: var(--space-5) var(--space-10);
+  font-size: var(--text-lg);
+}
+
+/* Button States */
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+.card {
+  background-color: var(--navy-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--navy-lighter);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Card Header */
+.card-header {
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+/* Card Body */
+.card-body {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.card-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Card Footer */
+.card-footer {
+  padding-top: var(--space-4);
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* Strategy Card */
+.card-strategy {
+  background-color: var(--navy-base);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-strategy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+}
+
+.card-strategy:hover {
+  border-color: var(--accent-muted);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Performance Card */
+.card-performance {
+  background-color: var(--navy-deep);
+  border: 1px solid var(--border-subtle);
+}
+
+.card-performance .metric {
+  font-family: var(--font-mono);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--accent);
+  margin: var(--space-2) 0;
+}
+
+/* Card Variants */
+.card-dark {
+  background-color: var(--navy-deep);
+}
+
+.card-flat {
+  box-shadow: none;
+}
+
+.card-flat:hover {
+  transform: none;
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* Text Inputs */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background-color: var(--navy-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  background-color: var(--navy-base);
+}
+
+.form-input:disabled,
+.form-textarea:disabled,
+.form-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--navy-deep);
+}
+
+/* Textarea */
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 767px) {
+  .btn-cta {
+    padding: var(--space-5) var(--space-8);
+    font-size: var(--text-lg);
+  }
+
+  .card {
+    padding: var(--space-4);
+  }
+
+  .card-title {
+    font-size: var(--text-xl);
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

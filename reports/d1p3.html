@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WCG69XDQ');</script>
+  <meta charset="utf-8">
+  <title>Delta Momentum Paper 3 - Portfolio Report | AI Velocity Fund</title>
+  <meta name="description" content="Portfolio history report for DanSavage1 Paper 3.">
+  <meta property="og:title" content="Delta Momentum Paper 3 - Portfolio Report | AI Velocity Fund">
+  <meta property="og:description" content="Portfolio history report for DanSavage1 Paper 3.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/design-system.css" rel="stylesheet" type="text/css">
+  <link href="/css/components.css" rel="stylesheet" type="text/css">
+  <link href="/css/layout.css" rel="stylesheet" type="text/css">
+  <link href="/css/ai-velocity.css" rel="stylesheet" type="text/css">
+  <link href="/images/favicon.jpeg" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.jpeg" rel="apple-touch-icon">
+
+
+  <style>
+    .report-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(27, 77, 62, 0.3);
+    }
+
+    .report-hero h1 {
+      color: #fff;
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .report-hero p {
+      color: rgba(255, 255, 255, 0.8);
+      font-family: var(--font-sans);
+      font-size: 1.125rem;
+    }
+
+    .report-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 2px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .stat-card h3 {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      color: #6B7280;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card p {
+      font-family: var(--font-mono);
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .stat-card.positive p {
+      color: #1b4d3e;
+    }
+
+    .stat-card.negative p {
+      color: #ef4444;
+    }
+
+    .report-table-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2rem;
+    }
+
+    .report-table-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .report-table-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .report-table-header p {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: #6B7280;
+      margin: 0;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+    }
+
+    thead {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%);
+    }
+
+    th {
+      padding: 1rem 1.25rem;
+      text-align: right;
+      font-weight: 600;
+      white-space: nowrap;
+      color: #fff;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    th:first-child {
+      text-align: left;
+    }
+
+    td {
+      padding: 0.875rem 1.25rem;
+      text-align: right;
+      border-bottom: 1px solid #f3f4f6;
+      color: #374151;
+    }
+
+    td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #111827;
+      font-family: var(--font-mono);
+    }
+
+    tbody tr:hover {
+      background: #f9fafb;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafbfc;
+    }
+
+    tbody tr:nth-child(even):hover {
+      background: #f3f4f6;
+    }
+
+    .positive {
+      color: #1b4d3e;
+      font-weight: 600;
+    }
+
+    .negative {
+      color: #ef4444;
+      font-weight: 600;
+    }
+
+    .neutral {
+      color: #6B7280;
+    }
+
+    .highlight-row {
+      background: #fffbeb !important;
+    }
+
+    .report-footer-note {
+      text-align: center;
+      padding: 1.5rem;
+      color: #6B7280;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      border-top: 2px solid #e5e7eb;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 3rem;
+      color: #6B7280;
+      font-family: var(--font-sans);
+    }
+
+    @media(max-width:768px) {
+      .report-hero {
+        padding: 2rem 1.5rem;
+      }
+
+      .report-hero h1 {
+        font-size: 1.875rem;
+      }
+
+      .report-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      table {
+        font-size: 0.75rem;
+        min-width: 700px;
+      }
+
+      th,
+      td {
+        padding: 0.625rem 0.75rem;
+      }
+    }
+  </style>
+
+  <style id="theme-toggle-styles">
+    /* ── Theme Toggle Button ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .theme-icon-dark,
+    .theme-icon-light {
+      line-height: 1;
+    }
+
+    /* Default (dark mode): show moon, hide sun */
+    body:not(.light-mode) .theme-icon-light {
+      display: none;
+    }
+
+    body:not(.light-mode) .theme-icon-dark {
+      display: inline;
+    }
+
+    /* Light mode: show sun, hide moon */
+    body.light-mode .theme-icon-dark {
+      display: none;
+    }
+
+    body.light-mode .theme-icon-light {
+      display: inline;
+    }
+
+    /* ── Light Mode Overrides ── */
+    body.light-mode {
+      background-color: #040911 !important;
+      color: #040911 !important;
+    }
+
+    body.light-mode .navbar {
+      background-color: rgba(4, 9, 17, 0.96) !important;
+      border-bottom: 1px solid rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .navbar-signal-line {
+      background-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .nav-brand-name {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-fund {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .nav-link,
+    body.light-mode .nav-dropdown-toggle {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-link:hover,
+    body.light-mode .nav-dropdown-toggle:hover {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-dropdown-menu {
+      background-color: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .nav-dropdown-link {
+      color: #C8CDD8 !important;
+    }
+
+    body.light-mode .nav-dropdown-link:hover {
+      background-color: rgba(42, 92, 179, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-toggle-line {
+      background-color: #ffffff !important;
+    }
+
+    body.light-mode .theme-toggle {
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Footer */
+    body.light-mode .footer {
+      background-color: #0D1525 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .footer-tagline,
+    body.light-mode .footer-link,
+    body.light-mode .footer-copyright {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .footer-heading {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .nav-brand-name.footer-brand-name {
+      color: #ffffff !important;
+    }
+
+    /* ── White Cards on Navy Background ── */
+    /* Report stat cards */
+    body.light-mode .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stat-card h3 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card p {
+      color: #040911 !important;
+    }
+
+    body.light-mode .stat-card.positive p {
+      color: #059669 !important;
+    }
+
+    body.light-mode .stat-card.negative p {
+      color: #dc2626 !important;
+    }
+
+    /* Report table card */
+    body.light-mode .report-table-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .report-table-header h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode td {
+      color: #374151 !important;
+    }
+
+    body.light-mode td:first-child {
+      color: #040911 !important;
+    }
+
+    body.light-mode tbody tr:hover td {
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .report-footer-note {
+      color: #6B7280 !important;
+      border-top-color: #e5e7eb !important;
+    }
+
+    /* Report hero */
+    body.light-mode .report-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    /* Chart pages */
+    body.light-mode .chart-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-title {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .chart-hero .chart-hero-subtitle {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .chart-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .chart-card-title-block h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-card-title-block p {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .time-selector {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn {
+      background: #ffffff !important;
+      color: #374151 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .time-btn.active {
+      background: #2A5CB3 !important;
+      color: #ffffff !important;
+      border-color: #2A5CB3 !important;
+    }
+
+    body.light-mode .chart-wrapper {
+      border-color: #D1D9E6 !important;
+      background: #f9fafb !important;
+    }
+
+    body.light-mode .chart-legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .chart-legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .chart-legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .chart-legend-value.positive {
+      color: #059669 !important;
+    }
+
+    body.light-mode .chart-legend-value.negative {
+      color: #dc2626 !important;
+    }
+
+    body.light-mode .chart-hint {
+      background: #f3f4f6 !important;
+      color: #6B7280 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    /* Strategies page */
+    body.light-mode .page-hero {
+      background: #0D1525 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .page-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .page-hero p {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .strategy-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .strategy-card h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .strategy-card p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .strategy-card-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .comparison-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .comparison-section h2 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .comparison-section .subtitle {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend {
+      border-top-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .legend-label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .legend-value {
+      color: #040911 !important;
+    }
+
+    body.light-mode .page-footer-note {
+      color: #6B7280 !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .strategy-link-secondary {
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.4) !important;
+    }
+
+    /* Index / home page */
+    body.light-mode .hero-section {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .section-card,
+    body.light-mode .feature-card,
+    body.light-mode .metric-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .section-card h2,
+    body.light-mode .section-card h3,
+    body.light-mode .feature-card h3,
+    body.light-mode .metric-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .section-card p,
+    body.light-mode .feature-card p,
+    body.light-mode .metric-card p {
+      color: #374151 !important;
+    }
+
+    /* About page */
+    body.light-mode .about-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .about-card,
+    body.light-mode .team-card,
+    body.light-mode .value-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .about-card h2,
+    body.light-mode .about-card h3,
+    body.light-mode .team-card h3,
+    body.light-mode .value-card h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .about-card p,
+    body.light-mode .team-card p,
+    body.light-mode .value-card p {
+      color: #374151 !important;
+    }
+
+    /* ── Backtest pages ── */
+    body.light-mode .backtest-hero {
+      background: linear-gradient(135deg, #1b4d3e 0%, #0b1d3a 100%) !important;
+    }
+
+    body.light-mode .backtest-hero h1 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .backtest-hero p {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    body.light-mode .backtest-container {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .backtest-section h2,
+    body.light-mode .backtest-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .backtest-section th {
+      background: #f3f4f6 !important;
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .backtest-section tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    /* Stat cards in backtests - White with Cobalt metrics */
+    body.light-mode .stats-hero .stat-card,
+    body.light-mode .stats-grid .stat-card {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .label,
+    body.light-mode .stats-grid .stat-card .label {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .value,
+    body.light-mode .stats-grid .stat-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .stats-hero .stat-card .subtext,
+    body.light-mode .stats-grid .stat-card .subtext {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .stat-card.highlight {
+      background: linear-gradient(135deg, #059669, #10b981) !important;
+      border: none !important;
+    }
+
+    body.light-mode .stat-card.highlight .label,
+    body.light-mode .stat-card.highlight .value,
+    body.light-mode .stat-card.highlight .subtext {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .config-box,
+    body.light-mode .risk-card {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .config-item .label,
+    body.light-mode .risk-card h4 {
+      color: #6B7280 !important;
+    }
+
+    body.light-mode .config-item .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .risk-card .value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .progress-bar {
+      background: #e5e7eb !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .progress-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .alert-success {
+      background: rgba(16, 185, 129, 0.08) !important;
+    }
+
+    body.light-mode .alert-warning {
+      background: rgba(245, 158, 11, 0.08) !important;
+    }
+
+    body.light-mode .alert-content h4 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .alert-content p {
+      color: #374151 !important;
+    }
+
+    body.light-mode .recommendation-box {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .recommendation-box h3 {
+      color: #ffffff !important;
+    }
+
+    body.light-mode .recommendation-box .big-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .recommendation-box .subtitle-text {
+      color: #A0ABBE !important;
+    }
+
+    body.light-mode .comparison-table th {
+      background: #1b4d3e !important;
+      color: #ffffff !important;
+    }
+
+    body.light-mode .comparison-table td {
+      color: #374151 !important;
+    }
+
+    body.light-mode .comparison-table tr:hover td {
+      background: rgba(42, 92, 179, 0.04) !important;
+    }
+
+    body.light-mode .highlight-box {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-box h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .highlight-param {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .highlight-param-label {
+      color: #374151 !important;
+    }
+
+    body.light-mode .highlight-param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .params-section {
+      background: #FFFFFF !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .params-section h3 {
+      color: #040911 !important;
+    }
+
+    body.light-mode .param-item {
+      background: #f3f4f6 !important;
+      border-color: #D1D9E6 !important;
+    }
+
+    body.light-mode .param-name {
+      color: #374151 !important;
+    }
+
+    body.light-mode .param-value {
+      color: #2A5CB3 !important;
+    }
+
+    body.light-mode .backtest-footer {
+      color: #A0ABBE !important;
+      border-top-color: rgba(42, 92, 179, 0.2) !important;
+    }
+
+    body.light-mode .badge {
+      background: rgba(42, 92, 179, 0.15) !important;
+      color: #2A5CB3 !important;
+      border-color: rgba(42, 92, 179, 0.3) !important;
+    }
+
+    body.light-mode .chart-container {
+      background: #f3f4f6 !important;
+    }
+
+    /* Mobile nav in light mode */
+    @media (max-width: 768px) {
+      body.light-mode .nav-menu {
+        background-color: #0D1525 !important;
+        border-left-color: rgba(42, 92, 179, 0.3) !important;
+      }
+
+      body.light-mode .nav-link {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-toggle {
+        border-bottom-color: rgba(42, 92, 179, 0.15) !important;
+      }
+
+      body.light-mode .nav-dropdown-menu {
+        background-color: #040911 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCG69XDQ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-signal-line" aria-hidden="true"></div>
+    <div class="nav-container">
+      <a href="/" class="nav-brand-lockup">
+        <span class="nav-brand-name">AI VELOCITY</span>
+        <span class="nav-brand-fund">FUND</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+      <div class="nav-menu">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Charts</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/charts/d1l1s1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/charts/d2l1s1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/charts/n1l1s1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Strategies</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/reports/d1l1" class="nav-dropdown-link">Delta Momentum</a>
+            <a href="/reports/d2l1" class="nav-dropdown-link">Delta Reversal</a>
+            <a href="/reports/n1l1" class="nav-dropdown-link">Neutral Alpha</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">
+            <span>Backtests</span>
+            <svg class="nav-dropdown-icon" width="10" height="10" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 9L1 4h10z" />
+            </svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="/backtests/iron-butterfly-backtest" class="nav-dropdown-link">Iron Butterfly</a>
+            <a href="/backtests/mean-reversion-strategy" class="nav-dropdown-link">Mean Reversion</a>
+            <a href="/backtests/trade-on-daily-earnings-calls---short-only" class="nav-dropdown-link">Earnings Short</a>
+            <a href="/backtests/trade-on-earnings-calls---long-only" class="nav-dropdown-link">Earnings Long</a>
+          </div>
+        </div>
+        <a href="/about-us" class="nav-link">About</a>
+        <a href="mailto:info@aivelocityfund.com" class="nav-link">Contact</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"
+          title="Toggle light/dark mode">
+          <span class="theme-toggle-icon theme-icon-dark">🌙</span>
+          <span class="theme-toggle-icon theme-icon-light">☀️</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width:1400px;margin:0 auto;padding:2rem 1.5rem;">
+
+    <div class="report-hero">
+      <h1>Delta Momentum Paper 3</h1>
+      <p>Portfolio History Report</p>
+    </div>
+
+    <div class="report-stats" id="stats">
+      <div class="stat-card" style="grid-column:1/-1;">
+        <div class="loading-state">Loading portfolio data...</div>
+      </div>
+    </div>
+
+    <div class="report-table-card">
+      <div class="report-table-header">
+        <div>
+          <h2>Portfolio History</h2>
+          <p>Daily performance data for DanSavage1 Paper 3</p>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Equity</th>
+              <th>Cash Flow</th>
+              <th>Daily P/L</th>
+              <th>Daily %</th>
+              <th>Cumulative Profit</th>
+              <th>Cumulative %</th>
+              <th>Annualized %</th>
+              <th>Sharpe Ratio</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td colspan="9" class="loading-state">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="report-footer-note">Last updated: <span id="lastUpdate">—</span></div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="footer-brand-lockup"><span class="nav-brand-name">AI VELOCITY</span><span
+              class="nav-brand-fund">FUND</span></a>
+          <p class="footer-tagline">Systematic alpha generation through algorithmic execution.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4 class="footer-heading">Company</h4>
+            <a href="/about-us" class="footer-link">About</a>
+            <a href="mailto:info@aivelocityfund.com" class="footer-link">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h4 class="footer-heading">Resources</h4>
+            <a href="/reports/d1l1" class="footer-link">Strategy</a>
+            <a href="/charts/d1l1s1" class="footer-link">Charts</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">&copy; 2025&ndash;2026 AI Velocity Fund, LLC. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var endpoint = 'https://www.machinetrader.io/csvfiles/alpaca_portfolio_history_DanSavage1P3.csv';
+
+      function fmtCurrency(v) {
+        if (!v || v === '') return '-';
+        var n = parseFloat(v);
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      function fmtPct(v) {
+        if (!v || v === '') return '-';
+        return parseFloat(v).toFixed(2) + '%';
+      }
+      function cls(v) {
+        if (!v || v === '') return 'neutral';
+        var n = parseFloat(v);
+        return n > 0 ? 'positive' : n < 0 ? 'negative' : 'neutral';
+      }
+      function fmtVal(v, isPct, isCur) {
+        if (!v || v === '') return '<span class="neutral">-</span>';
+        var c = cls(v), f = isCur ? fmtCurrency(v) : isPct ? fmtPct(v) : parseFloat(v).toFixed(2);
+        return '<span class="' + c + '">' + f + '</span>';
+      }
+
+      async function load() {
+        try {
+          var r = await fetch(endpoint);
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          var text = await r.text();
+          var lines = text.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+          var headers = lines[0].split(',').map(function (h) { return h.trim(); });
+          var data = [];
+          for (var i = 1; i < lines.length; i++) {
+            var vals = lines[i].split(',').map(function (v) { return v.trim(); });
+            var row = {};
+            headers.forEach(function (h, idx) { row[h] = vals[idx] || ''; });
+            data.push(row);
+          }
+          renderTable(data);
+          renderStats(data);
+        } catch (e) {
+          document.getElementById('stats').innerHTML = '<div class="stat-card" style="grid-column:1/-1;"><h3>Error</h3><p style="font-size:1rem;color:#ef4444;">Unable to load data</p></div>';
+          document.getElementById('tableBody').innerHTML = '<tr><td colspan="9" style="text-align:center;padding:2rem;color:#ef4444;">Failed to load portfolio data.</td></tr>';
+        }
+      }
+
+      function renderTable(data) {
+        var tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+        data.forEach(function (row) {
+          var tr = document.createElement('tr');
+          if (row['Cash Flow'] && row['Cash Flow'] !== '') tr.classList.add('highlight-row');
+          tr.innerHTML = '<td>' + row['Date'] + '</td>' +
+            '<td>' + fmtCurrency(row['Equity']) + '</td>' +
+            '<td>' + (row['Cash Flow'] ? fmtCurrency(row['Cash Flow']) : '-') + '</td>' +
+            '<td>' + fmtVal(row['Daily P/L'], false, true) + '</td>' +
+            '<td>' + fmtVal(row['Daily %'], true, false) + '</td>' +
+            '<td>' + fmtVal(row['Cumulative Profit'], false, true) + '</td>' +
+            '<td>' + fmtVal(row['Cumulative %'], true, false) + '</td>' +
+            '<td>' + fmtVal(row['Annualized %'], true, false) + '</td>' +
+            '<td>' + fmtVal(row['Sharpe Ratio'], false, false) + '</td>';
+          tbody.appendChild(tr);
+        });
+        var last = data[data.length - 1];
+        if (last) document.getElementById('lastUpdate').textContent = last['Date'] || '—';
+      }
+
+      function renderStats(data) {
+        var last = data[data.length - 1];
+        var eq = parseFloat(last['Equity']);
+        var cp = parseFloat(last['Cumulative Profit']);
+        var cpct = parseFloat(last['Cumulative %']);
+        var ann = parseFloat(last['Annualized %']);
+        var sr = parseFloat(last['Sharpe Ratio']);
+        document.getElementById('stats').innerHTML =
+          '<div class="stat-card"><h3>Current Equity</h3><p>' + fmtCurrency(eq) + '</p></div>' +
+          '<div class="stat-card ' + (cp >= 0 ? 'positive' : 'negative') + '"><h3>Total Profit</h3><p>' + fmtCurrency(cp) + '</p></div>' +
+          '<div class="stat-card ' + (cpct >= 0 ? 'positive' : 'negative') + '"><h3>Total Return</h3><p>' + fmtPct(cpct) + '</p></div>' +
+          '<div class="stat-card ' + (ann >= 0 ? 'positive' : 'negative') + '"><h3>Annualized Return</h3><p>' + fmtPct(ann) + '</p></div>' +
+          '<div class="stat-card ' + (sr >= 0 ? 'positive' : 'negative') + '"><h3>Sharpe Ratio</h3><p>' + sr.toFixed(2) + '</p></div>';
+      }
+
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', load); }
+      else { load(); }
+    })();
+  </script>
+
+
+  <script id="theme-toggle-script">
+    (function () {
+      var STORAGE_KEY = 'aiv-theme';
+      var btn = document.getElementById('themeToggle');
+      // Apply saved preference immediately
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light') document.body.classList.add('light-mode');
+
+      function toggle() {
+        var isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem(STORAGE_KEY, isLight ? 'light' : 'dark');
+      }
+      if (btn) {
+        btn.addEventListener('click', toggle);
+      } else {
+        // If btn not yet in DOM (e.g. nav loaded async), wait
+        document.addEventListener('DOMContentLoaded', function () {
+          var b = document.getElementById('themeToggle');
+          if (b) b.addEventListener('click', toggle);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+/**
+ * AI Velocity Fund — Design System
+ * Stealth Institutional · Dark Theme
+ * Inspo: Point72 / Two Sigma
+ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+
+:root {
+    /* ── Obsidian Navy Palette ── */
+    --navy-deep: #040911;
+    --navy-base: #0a1628;
+    --navy-light: #111f3a;
+    --navy-lighter: #1a2d4f;
+
+    /* ── Accent — Cobalt Blue ── */
+    --accent: #2A5CB3;
+    --accent-hover: #3570D4;
+    --accent-muted: #1E4A8F;
+    --accent-glow: rgba(42, 92, 179, 0.20);
+
+    /* ── CTA — Burnt Orange ── */
+    --cta: #CC5500;
+    --cta-hover: #E06010;
+    --cta-glow: rgba(204, 85, 0, 0.25);
+
+    /* ── Semantic ── */
+    --green-positive: #34d399;
+    --red-negative: #f87171;
+
+    /* ── Text ── */
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0ABBE;
+    --text-muted: #5A6A7E;
+
+    /* ── Borders ── */
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-focus: var(--accent);
+
+    /* ── Typography ── */
+    --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    /* ── Font Sizes ── */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+    --text-7xl: 4.5rem;
+
+    /* ── Spacing ── */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+
+    /* ── Radius ── */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+
+    /* ── Shadows ── */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+
+    /* ── Transitions ── */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+
+    /* ── Z-Index ── */
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal: 400;
+    --z-popover: 500;
+    --z-tooltip: 600;
+}
+
+/* ============================================
+   ANIMATED NOISE / GRAIN OVERLAY
+   ============================================ */
+
+@keyframes grain-shift {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-2%, -3%);
+    }
+
+    20% {
+        transform: translate(3%, 2%);
+    }
+
+    30% {
+        transform: translate(-1%, 4%);
+    }
+
+    40% {
+        transform: translate(4%, -1%);
+    }
+
+    50% {
+        transform: translate(-3%, 1%);
+    }
+
+    60% {
+        transform: translate(2%, -4%);
+    }
+
+    70% {
+        transform: translate(-4%, 3%);
+    }
+
+    80% {
+        transform: translate(1%, -2%);
+    }
+
+    90% {
+        transform: translate(3%, 4%);
+    }
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: grain-shift 0.5s steps(1) infinite;
+}
+
+/* ============================================
+   GLOBAL RESETS & BASE
+   ============================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    background-color: var(--navy-deep);
+    overflow-x: hidden;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+h1 {
+    font-size: var(--text-6xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+h3 {
+    font-size: var(--text-3xl);
+    font-weight: 500;
+}
+
+h4 {
+    font-size: var(--text-2xl);
+    font-weight: 500;
+}
+
+h5 {
+    font-size: var(--text-xl);
+    font-weight: 500;
+}
+
+h6 {
+    font-size: var(--text-lg);
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: var(--space-4);
+    line-height: 1.7;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+strong,
+b {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+small {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.metric,
+.data-value,
+.code {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-accent {
+    color: var(--accent);
+}
+
+.text-cta {
+    color: var(--cta);
+}
+
+.text-positive {
+    color: var(--green-positive);
+}
+
+.text-negative {
+    color: var(--red-negative);
+}
+
+.font-serif {
+    font-family: var(--font-serif);
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.tracking-wide {
+    letter-spacing: 0.1em;
+}
+
+.tracking-wider {
+    letter-spacing: 0.2em;
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.flex {
+    display: flex;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+@media (max-width: 1279px) {
+    :root {
+        --text-6xl: 3rem;
+        --text-5xl: 2.5rem;
+        --text-4xl: 2rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    :root {
+        --text-6xl: 2.5rem;
+        --text-5xl: 2.25rem;
+        --text-4xl: 1.875rem;
+    }
+
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --text-7xl: 2.5rem;
+        --text-6xl: 2rem;
+        --text-5xl: 1.75rem;
+        --text-4xl: 1.5rem;
+        --text-3xl: 1.25rem;
+    }
+
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        font-size: var(--text-base);
+    }
+}
+
+/* ============================================
+   FOCUS & SELECTION
+   ============================================ */
+
+:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+::selection {
+    background-color: var(--accent);
+    color: var(--text-primary);
+}
+
+::-moz-selection {
+    background-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* ============================================
+   LIGHT MODE TOKEN OVERRIDES
+   (Unified Navy: same Navy bg, White cards)
+   ============================================ */
+
+[data-theme='light'],
+body.light-mode {
+    /* Background stays Navy */
+    --navy-deep: #040911;
+    --navy-base: #0D1525;
+    --navy-light: #0a1628;
+    --navy-lighter: #111f3a;
+
+    /* Text on cards becomes Navy */
+    --text-primary: #040911;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
+
+    /* Cards become Pure White */
+    --card-bg: #FFFFFF;
+    --card-border: #D1D9E6;
+
+    /* Accent stays Electric Cobalt */
+    --accent: #2A5CB3;
+    --accent-hover: #3570D4;
+
+    /* Borders on dark bg */
+    --border-subtle: rgba(42, 92, 179, 0.15);
+}
